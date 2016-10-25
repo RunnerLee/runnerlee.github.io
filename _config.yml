@@ -4,7 +4,7 @@ email: runnerleer@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   RunnerLee
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yansu.org" # the base hostname & protocol for your site
+url: "http://runnerlee.com" # the base hostname & protocol for your site
 rss_url: /pages/feed.xml
 
 # Sidebar filter
@@ -25,11 +25,6 @@ favicon: http://runnerlee.github.io/assets/img/runnerlee.jpg
 # disqus 设置
 disqus:
   shortname: runnerleegithubio
-
-# google analytics 设置
-ga:
-  id: UA-54767140-1
-  url: runnerleer.github.io
 
 # Build settings
 permalink: /:year/:month/:day/:title.html
