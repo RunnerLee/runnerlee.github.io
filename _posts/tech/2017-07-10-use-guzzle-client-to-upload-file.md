@@ -6,11 +6,9 @@ tags: PHP
 description: 使用 Guzzle 上传文件
 ---
 
-## 使用 Guzzle 上传文件
-
 上传文件, 只能通过 multipart/form-data 的表单上传.
 
-最简单的上传文件的例子:
+简单的上传文件的例子:
 ```php
 use GuzzleHttp\Client;
 
