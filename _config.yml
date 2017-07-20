@@ -4,7 +4,7 @@ email: runnerleer@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   RunnerLee
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://runnerlee.com" # the base hostname & protocol for your site
+url: "https://runnerlee.com" # the base hostname & protocol for your site
 rss_url: /pages/feed.xml
 
 # Sidebar filter
@@ -19,8 +19,8 @@ github: RunnerLee
 # dribbble: username
 
 # avatar头像及Favicon
-avatar: http://runnerlee.github.io/assets/img/runnerlee.jpg
-favicon: http://runnerlee.github.io/assets/img/runnerlee.jpg
+avatar: https://runnerlee.github.io/assets/img/runnerlee.jpg
+favicon: https://runnerlee.github.io/assets/img/runnerlee.jpg
 
 # disqus 设置
 disqus:
