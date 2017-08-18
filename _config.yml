@@ -32,3 +32,7 @@ markdown: kramdown
 highlighter: rouge
 sass:
   style: compressed
+
+ga:
+  id: UA-104881530-1
+  url: runnerlee.com
