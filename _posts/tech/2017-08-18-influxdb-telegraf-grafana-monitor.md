@@ -7,7 +7,7 @@ description: Telegraf+Influxdb+Grafana 可视化监控系统搭建
 ---
 
 ### 原有监控系统
-<img src="/assets/img/2017-08-18/graphite.png" style="width:180px" />
+![Alt text](/assets/img/2017-08-18/graphite.png)
 
 整个系统以 Graphite (carbon + whisper) 为核心, kong 通过 [statsd plugin](https://getkong.org/plugins/statsd/) 将服务调用信息发送至 [statsd](https://github.com/etsy/statsd), 而 statsd 则将统计信息通过 Web API 保存至[Graphite](https://graphiteapp.org/) . 最终在 [Grafana](https://grafana.com/) 中通过 [Graphite Data Source](https://grafana.com/plugins/graphite) 获取统计信息并输出图表到面板.  
 
