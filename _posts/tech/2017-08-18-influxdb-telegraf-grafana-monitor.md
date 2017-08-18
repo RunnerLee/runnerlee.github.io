@@ -153,6 +153,13 @@ pm.status_path = /status
  [[inputs.netstat]]
 ```
 
+配置完成后, 需要对配置进行测试, 完成后启动再启动
+```
+telegraf -config /etc/telegraf/telegraf.conf -test
+
+/etc/init.d/telegraf start
+```
+
 
 ### 配置 Grafana 面板
 在 Grafana 中, 需要先配置数据源 (Data Source), 然后创建 Dashboard, 在 Dashboard 中创建 Panel 也就是各种统计组件. 最终完成一个面板的配置.
