@@ -7,7 +7,7 @@ description: Telegraf+Influxdb+Grafana 可视化监控系统搭建
 ---
 
 ### 原有监控系统
-![Alt text](./graphite.png)
+![Alt text](/assets/img/2017-08-18/graphite.png)
 整个系统以 Graphite (carbon + whisper) 为核心, kong 通过 [statsd plugin](https://getkong.org/plugins/statsd/) 将服务调用信息发送至 [statsd](https://github.com/etsy/statsd), 而 statsd 则将统计信息通过 Web API 保存至[Graphite](https://graphiteapp.org/) . 最终在 [Grafana](https://grafana.com/) 中通过 [Graphite Data Source](https://grafana.com/plugins/graphite) 获取统计信息并输出图表到面板.  
 
 这是网上找到的, 对 Grafana 的描述
@@ -31,7 +31,7 @@ description: Telegraf+Influxdb+Grafana 可视化监控系统搭建
 而其中, Telegraf 也提供了 Statsd Server 功能, 解决了 Statsd 官方推荐的 [influxdb backend 插件只支持 influxdb 0.9 的情况](https://github.com/bernd/statsd-influxdb-backend/issues/37) .
 
 ### 基于 Influxdb + Telegraf + Grafana 搭建的监控系统
-![Alt text](./influxdb.png)
+![Alt text](/assets/img/2017-08-18/influxdb.png)
 
 在这一版的监控系统中, 我们将利用 Telegraf 或者直接提交至 Influxdb, 来采集三种信息:
 * 在每台机器上安装 Telegraf 用于采集服务器及其安装的软件的状态和统计信息
@@ -157,7 +157,7 @@ pm.status_path = /status
 在 Grafana 中, 需要先配置数据源 (Data Source), 然后创建 Dashboard, 在 Dashboard 中创建 Panel 也就是各种统计组件. 最终完成一个面板的配置.
 
 #### 配置数据源
-![Alt text](./data_source.png)
+![Alt text](/assets/img/2017-08-18/data_source.png)
 配置数据源需要注意几个地方:
 * type, 选择 Influxdb,
 * name, 固定 `server_{ip}`
@@ -168,12 +168,12 @@ pm.status_path = /status
 配置完成后, 点及 `Add` 两次, 如果显示 `test success` 即为成功.
 
 #### 创建面板
-![Alt text](./new_dashboard_action.png)
-![Alt text](./new_panel.png)
-![Alt text](./edit_panel.png)
+![Alt text](/assets/img/2017-08-18/new_dashboard_action.png)
+![Alt text](/assets/img/2017-08-18/new_panel.png)
+![Alt text](/assets/img/2017-08-18/edit_panel.png)
 
 可以选择切换到手动编辑  SQL 模式.
-![Alt text](./edit_sql.png)
+![Alt text](/assets/img/2017-08-18/edit_sql.png)
 
 然后保存, 这样就创建好了第一个面板了.
 
