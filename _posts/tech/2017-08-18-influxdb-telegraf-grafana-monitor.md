@@ -253,3 +253,7 @@ time                tag_alpha value
 ----                --------- -----
 1503037626342109770 4         6
 ```
+
+### 效果
+给一张公司内部署之后的面板图
+![Alt text](/assets/img/2017-08-18/dashboard.jpg)
