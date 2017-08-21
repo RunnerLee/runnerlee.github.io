@@ -6,16 +6,37 @@ tags: PHP
 description: API Watcher API 监控系统
 ---
 
+## vbot 中使用 eloquent
+
 调度器通过 laravel 的任务调度实现, 而微信机器人则使用 [vbot](https://github.com/HanSon/vbot), 后台用的是 [encore/laravel-admin](https://github.com/z-song/laravel-admin).
 
 因为 vbot 也是使用 `illuminate/container` 作为容器, 而 `Illuminate\Container\Container` 是单例模式, 因此无法直接将 vbot 注册到 laravel 的容器中.
 
-在 vbot 中, 我需要自定义一个消息处理器, 在消息处理器中查询数据库, 能直接使用 Eloquent 最好啦. 而要使用 Eloquent Model, 只需要往 Model 中传入一个 `\Illuminate\Database\ConnectionResolverInterface` 实例即可.
+在 vbot 中, 我需要自定义一个消息处理器, 在消息处理器中查询数据库, 能直接使用 Eloquent 最好啦.
 
+要使用 Eloquent Model, 只需要往 Model 中传入一个 `\Illuminate\Database\ConnectionResolverInterface` 实例. 传入这个 `connection`, 用于 `Builder` 最终的执行查询语句.
+
+而获取这个实例, 有两种方法.
+
+### 方法一 (待验证)
+通过 `Illuminate\Database\Capsule\Manager`
+
+```
+use Illuminate\Database\Capsule\Manager;
+use Illuminate\Database\Eloquent\Model;
+
+$manager = new Manager(vbot());
+
+Model::setConnectionResolver($manager->getDatabaseManager());
+
+```
+
+### 方法二
 ... 未完待续
 
 
 
+## 部署 API Watcher
 
 ### 安装
 ```
