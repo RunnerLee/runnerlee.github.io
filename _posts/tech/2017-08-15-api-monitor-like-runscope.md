@@ -6,9 +6,14 @@ tags: PHP
 description: API Watcher API 监控系统
 ---
 
-## vbot 中使用 eloquent
+API Watcher 是一个集成了 API 管理，API 监控及告警的系统。
+
+API Watcher 提供自定义 Faker，并使用 laravel 提供的 validation 进行 API 响应数据校验。动态配置监控任务的执行频率，并可以设置时间条件，达到分时间区段不同频率进行 API 监控的功能。
 
 调度器通过 laravel 的任务调度实现, 而微信机器人则使用 [vbot](https://github.com/HanSon/vbot), 后台用的是 [encore/laravel-admin](https://github.com/z-song/laravel-admin).
+
+
+## vbot 中使用 eloquent
 
 因为 vbot 也是使用 `illuminate/container` 作为容器, 而 `Illuminate\Container\Container` 是单例模式, 因此无法直接将 vbot 注册到 laravel 的容器中.
 
