@@ -1,37 +1,34 @@
-# Site settings
-title: RunnerLee
-email: runnerleer@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  RunnerLee
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://runnerlee.com" # the base hostname & protocol for your site
-rss_url: /pages/feed.xml
+# Permalinks
+permalink:      /:year/:month/:day/:title
 
-# Sidebar filter
-# Choose 'tag' or 'category' as filter in sidebar.
-filter: 'category'
+# Setup
+title:          RunnerLee
+paginate:       10
+baseurl:        ""
+url:            "https://runnerlee.com"
 
-# Social account
-twitter: RunnerLeer
-# weibo:    ID
-github: RunnerLee
-# codepen:  username
-# dribbble: username
-
-# avatar头像及Favicon
-avatar: https://runnerlee.com/assets/img/runnerlee.jpg
-favicon: https://runnerlee.com/assets/img/runnerlee.jpg
-
-# disqus 设置
-disqus:
-  shortname: runnerleegithubio
+# Assets
+sass:
+  sass_dir:     _sass
+  style:        :compressed
 
 # Build settings
-permalink: /:year/:month/:day/:title.html
-markdown: kramdown
-highlighter: rouge
-sass:
-  style: compressed
+markdown:       kramdown
+
+# About
+author:
+  name:         RunnerLee
+  url:          https://github.com/RunnerLee
+  email:        runnerleer@gmail.com
+
+# Custom vars
+version:        3.4.1
+github:
+  repo:         https://github.com/RunnerLee/runnerlee.github.io
+
+# Gems
+gems:
+  - jekyll-paginate
 
 ga:
   id: UA-104881530-1
