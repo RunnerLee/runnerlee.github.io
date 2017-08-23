@@ -6,9 +6,14 @@ tags: PHP
 description: API Watcher API 监控系统
 ---
 
-## vbot 中使用 eloquent
+API Watcher 是一个集成了 API 管理，API 监控及告警的系统。
+
+API Watcher 提供自定义 Faker，并使用 laravel 提供的 validation 进行 API 响应数据校验。动态配置监控任务的执行频率，并可以设置时间条件，达到分时间区段不同频率进行 API 监控的功能。
 
 调度器通过 laravel 的任务调度实现, 而微信机器人则使用 [vbot](https://github.com/HanSon/vbot), 后台用的是 [encore/laravel-admin](https://github.com/z-song/laravel-admin).
+
+
+## vbot 中使用 eloquent
 
 因为 vbot 也是使用 `illuminate/container` 作为容器, 而 `Illuminate\Container\Container` 是单例模式, 因此无法直接将 vbot 注册到 laravel 的容器中.
 
@@ -16,24 +21,103 @@ description: API Watcher API 监控系统
 
 要使用 Eloquent Model, 只需要往 Model 中传入一个 `\Illuminate\Database\ConnectionResolverInterface` 实例. 传入这个 `connection`, 用于 `Builder` 最终的执行查询语句.
 
+所以， 我们只需要给 Vbot 增加一个服务提供者，在服务提供者里面进行这步操作.
+
 而获取这个实例, 有两种方法.
 
-### 方法一 (待验证)
-通过 `Illuminate\Database\Capsule\Manager`
+### 方法一
+vbot的配置中， 增加一项数据库配置
+```php
+[
+    'database' => [
+        'connections' => [
+            'default' => [
+                'driver' => 'mysql',
+                'host' => env('DB_HOST', '127.0.0.1'),
+                'port' => env('DB_PORT', '3306'),
+                'database' => env('DB_DATABASE', 'api_watcher'),
+                'username' => env('DB_USERNAME', 'root'),
+                'password' => env('DB_PASSWORD', ''),
+                'unix_socket' => '',
+                'charset' => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix' => '',
+                'strict' => true,
+                'engine' => null,
+            ],
+        ],
+    ],
+];
+```
 
 ```
+use Hanson\Vbot\Foundation\ServiceProviderInterface;
+use Hanson\Vbot\Foundation\Vbot;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Database\Eloquent\Model;
 
-$manager = new Manager(vbot());
+class DatabaseServiceProvider implements ServiceProviderInterface
+{
 
-Model::setConnectionResolver($manager->getDatabaseManager());
+    public function register(Vbot $vbot)
+    {
+        Model::setConnectionResolver((new Manager($vbot))->getDatabaseManager());
+    }
+}
 
 ```
 
 ### 方法二
-... 未完待续
+直接复制 `Illuminate\Database\DatabaseServiceProvider`
 
+vbot的配置中， 增加一项数据库配置, 跟 laravel 原先的 `config/database.php` 中一致
+```php
+[
+    'database' => [
+        'default' => 'mysql',
+        'connections' => [
+            'mysql' => [
+                'driver' => 'mysql',
+                'host' => env('DB_HOST', '127.0.0.1'),
+                'port' => env('DB_PORT', '3306'),
+                'database' => env('DB_DATABASE', 'api_watcher'),
+                'username' => env('DB_USERNAME', 'root'),
+                'password' => env('DB_PASSWORD', ''),
+                'unix_socket' => '',
+                'charset' => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix' => '',
+                'strict' => true,
+                'engine' => null,
+            ],
+        ],
+    ],
+];
+```
+
+然后
+```
+use Hanson\Vbot\Foundation\ServiceProviderInterface;
+use Hanson\Vbot\Foundation\Vbot;
+use Illuminate\Database\Connectors\ConnectionFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\DatabaseManager;
+
+class DatabaseServiceProvider implements ServiceProviderInterface
+{
+    public function register(Vbot $vbot)
+    {
+        Model::setConnectionResolver(new DatabaseManager($vbot, new ConnectionFactory($vbot)));
+    }
+}
+```
+
+然后就 OK 啦。 那为什么两种方法的配置不一样呢？
+因为最终都是拿 `database.default` 作为默认的连接的，在 `Illuminate\Database\DatabaseManager` 中负责创建读取配置并创建连接. 而在它里面，并不会给 `database.default` 配置默认值.
+
+但是在 `Illuminate\Database\Capsule\Manager` 中，`Manager::setupDefaultConfiguration()` 会给 `database.default` 配置一个默认值 `default`.
+
+所以, 哈哈, 我蛋疼了点. 其实两个都可以配置成一样的.
 
 
 ## 部署 API Watcher
