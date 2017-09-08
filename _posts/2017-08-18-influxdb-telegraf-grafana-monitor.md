@@ -43,8 +43,59 @@ Influxdb 提供了一个 Web API 用于管理, 类似于 Mysql, Influxdb 也提�
 
 同时, 需要部署 Grafana 用于可视化面板. 部署 [Chronograf](https://docs.influxdata.com/chronograf/v1.3/) 用于管理 Influxdb. Chronograf 提供了 Influxdb 的 Web Admin 功能(在 Influxdb 0.9时代是内置在 Influxdb中的), 以及比较丰富的图表功能, 但是不能跟 Grafana 比. 因此我们只把它用来管理 Influxdb.
 
+### Telegraf
+
+telegraf 内置了很多 `Input Plugin`, 用途是什么呢?
+回想到如果是你自己去做一个监控, 能够做到记录每分钟 CPU 的空闲率是多少, 要怎么做?
+
+- 搞一个数据库, 用来放数据的
+- 写一个脚本, 用来获取 CPU 的相关数据, 加上时间戳, 然后保存到数据库
+- 创建一个定时任务, 一分钟运行一次脚本
+- 写一个简单的程序, 从数据库查到数据, 然后根据时间戳, 绘制成图表.
+
+在你的脚本里面, 你可以采集任何你采集得到的数据, 然后怼到数据库. 而 `Input Plugin` 就是写好了的脚本. 只需要在配置文件中开启, 就可以采集到对应的数据. telegraf 内置的 `Input Plugin` 有这些:
+
+- Nginx
+- MySQL
+- PHP FPM
+- redis
+- Net
+- Netstat
+- MongoDB
+- PostgreSQL
+- Zipkin
+- Zookeeper
+- Elasticsearch
+- Apache
+- Docker
+- ...
+
+oh shit! 我要的都有!
+
+而且, 前面讲到, telegraf 内置了一个 Statsd Server ([Service Inputs](https://docs.influxdata.com/telegraf/v1.4/services/)), 从而解决了 Kong 调用监控的问题. 然而这不是全部, telegraf 还提供了:
+
+- HTTP Listener
+- TCP Listener
+- UDP Listener
+- Webhooks Listener
+
+shit..
+
+这只是 `Input`, Output 还支持 `Graphite`, `Elasticsearch`, `Datadog` 等等.. shit..
+
+
 ### 安装部署
-目前的规划是, 在每台机器上安装 Telegraf (即 agent), 并在每台机上面各自采集机器上安装的软件的信息. 在 Influxdb 中为每台机独立创建一个数据库, 统一命名 `server_{ip}`. 并规划在某台机器上, 采集 RDS (Mysql + Redis) 信息.
+需要准备一台机器用于安装数据库及 UI. 安装完成后启动服务, 并在需要监控的每台机器上安装 agent. 根据需要配置好 `input plugin`.
+
+每个 `telegraf` 只能提交到一个 `database`. telegraf 的每个 `input` 项都会有一个 `host` 的 `tag`, 它的值默认是机器的 `hostname`, 可以在 telegraf 的配置文件中修改.
+
+根据资源编排, 以及 Grafana 的面板模板变量, 将机器与数据库的关系定位:
+- 以每台机的 IP 作为 `hostname`, 或是以 `{分组名}+{组内编号}`.
+- 一个分组一个数据库
+- 根据分组需要开启 `input plugin`
+- 固定一个台机采集所有 mysql, redis 等服务
+
+好了, 那么开工!
 
 #### 安装 Influxdb
 ```
@@ -103,8 +154,8 @@ yum localinstall telegraf-1.3.5-1.x86_64.rpm
 如果配置的 `database` 不存在, 将自动创建.
 ```
 [[outputs.influxdb]]
-  urls = ["http://127.0.0.1:8086"]
-  database = "server_xxx.xxx.xxx.xxx"
+  urls = ["http://10.1.0.1:8086"]
+  database = "servers_xxxx"
   retention_policy = ""
   write_consistency = "any"
   timeout = "5s"
@@ -168,7 +219,7 @@ telegraf -config /etc/telegraf/telegraf.conf -test
 ![Alt text](/assets/img/2017-08-18/data_source.png)
 配置数据源需要注意几个地方:
 * type, 选择 Influxdb,
-* name, 固定 `server_{ip}`
+* name, 固定 `server_{name}`
 * url, Influxdb 的地址
 * access, 固定 proxy. 此外还有 direct. 前者是经由 Grafana 所在机器代理访问 Influxdb, 后者是在浏览器直接访问 Influxdb.
 * database, 目标机器的 Telegraf 做配置的 database
@@ -256,4 +307,4 @@ time                tag_alpha value
 
 ### 效果
 给一张公司内部署之后的面板图
-![Alt text](/assets/img/2017-08-18/dashboard.jpg)
+![Alt text](/assets/img/2017-09-08/2017-09-08-14-55-115.29.5.144-3000.png)
