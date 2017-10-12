@@ -10,6 +10,8 @@ description: 使用 Guzzle 上传文件
 
 简单的上传文件的例子:
 ```php
+<?php
+
 use GuzzleHttp\Client;
 
 $client = new Client;
@@ -33,6 +35,8 @@ $client->request('POST', 'http://foo.com/upload_file', [
 如果是由客户端调用上传而来的文件, 要再上传一次到别的地方 (例如云存储), 那应该这么做:
 
 ```php
+<?php
+
 use GuzzleHttp\Client;
 
 $client = new Client;
