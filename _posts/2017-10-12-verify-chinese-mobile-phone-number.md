@@ -23,7 +23,7 @@ description: 正则验证中国手机号码
 
 function verify($phoneNumber)
 {
-    if (0 === preg_match('/^(13[0-9]|14(5|7)|15([0-3]|[5-9])|17(0|[6-8])|18[0-9])\d{8}$/', $phoneNumber)) {
+    if (0 === preg_match('/^(13[0-9]|14[57]|15([0-3]|[5-9])|17[0135678]|18\d)\d{8}$/', $phoneNumber)) {
         return false;
     }
     if ('13800138000' === $phoneNumber || 0 < preg_match(substr($phoneNumber, 3), '/^(\d)\g{1}{7}$/')) {
