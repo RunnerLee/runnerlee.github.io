@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 修复注册 gitlab-runner 时一直提示 perhaps you are having network problems 及 status=404 
+title: 修复注册 gitlab-runner 时提示 network problems 及 status=404 
 category: 技术
 tags: gitlab-runner ci regsiter
 description: 修复注册 gitlab-runner 时一直提示 perhaps you are having network problems 及 status=404 
