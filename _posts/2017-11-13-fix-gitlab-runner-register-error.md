@@ -8,7 +8,7 @@ description: 修复注册 gitlab-runner 时一直提示 perhaps you are having n
 
 GitLab 社区版 8.16.4, 在注册 runner 的时候, 一直提示这个错误
 ```
-ERROR: Registering runner... failed                 runner=<token> status=401 Unauthorized
+ERROR: Registering runner... failed runner=<token> status=401 Unauthorized
 PANIC: Failed to register this runner. Perhaps you are having network problems
 ```
 
