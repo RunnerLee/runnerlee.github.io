@@ -21,7 +21,10 @@ yum install gitlab-ci-multi-runner-1.11.1-1.x86_64
 安装完成后, 进入 runner 注册步骤. 完成后, 需要重新注册服务
 
 ```
-gitlab-runner install <service name> --working-directory=/path/to/runner/path --config /etc/gitlab-runner/config.toml --user <user>
+gitlab-runner install <service name> \
+--working-directory=/path/to/runner/path \
+--config /etc/gitlab-runner/config.toml \
+--user <user>
 ```
 
 之后启动 runner
