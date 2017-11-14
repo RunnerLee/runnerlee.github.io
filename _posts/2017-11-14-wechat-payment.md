@@ -4,6 +4,7 @@ title: 微信支付接入
 category: 技术
 tags: wechat payment
 description: 微信支付接入
+author: RunnerLee
 ---
 
 微信支付到目前为止总有六种支付产品:
