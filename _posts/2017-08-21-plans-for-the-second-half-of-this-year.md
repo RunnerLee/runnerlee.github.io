@@ -4,6 +4,7 @@ title: 今年下半年的一些计划
 category: 技术
 tags: PHP
 description: 今年下半年的一些计划
+author: RunnerLee
 ---
 
 一点计划都没有, 本文完.

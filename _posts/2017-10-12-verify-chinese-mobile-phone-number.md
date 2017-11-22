@@ -4,6 +4,7 @@ title: 正则验证中国手机号码
 category: 技术
 tags: regex php
 description: 正则验证中国手机号码
+author: RunnerLee
 ---
 
 最近的脑子真的是完全没办法静下来... 搞个旧东西醒醒脑吧...

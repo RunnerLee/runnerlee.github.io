@@ -4,6 +4,7 @@ title: 使用 Guzzle 上传文件
 category: 技术
 tags: PHP
 description: 使用 Guzzle 上传文件
+author: RunnerLee
 ---
 
 上传文件, 只能通过 multipart/form-data 的表单上传.

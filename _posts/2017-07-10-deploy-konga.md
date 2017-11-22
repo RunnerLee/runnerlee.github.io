@@ -4,6 +4,7 @@ title: 安装部署 konga
 category: 技术
 tags: PHP
 description: 安装部署 konga
+author: RunnerLee
 ---
 
 github 地址: [pantsel/konga](https://github.com/pantsel/konga)

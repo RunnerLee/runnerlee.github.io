@@ -4,6 +4,7 @@ title: 参考 runscope 的一个 API 监控
 category: 技术
 tags: PHP
 description: API Watcher API 监控系统
+author: RunnerLee
 ---
 
 API Watcher 是一个集成了 API 管理，API 监控及告警的系统。

@@ -4,6 +4,7 @@ title: Telegraf+Influxdb+Grafana 可视化监控系统搭建
 category: 技术
 tags: PHP
 description: Telegraf+Influxdb+Grafana 可视化监控系统搭建
+author: RunnerLee
 ---
 
 ### 原有监控系统
