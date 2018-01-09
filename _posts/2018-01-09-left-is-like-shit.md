@@ -13,4 +13,4 @@ author: RunnerLee
 
 希望越来越好吧, 加油了. 好多未完待续, 生活也是.
 
-{% include music.html %}
+{% include music.html | raw %}
