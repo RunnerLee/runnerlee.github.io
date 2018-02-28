@@ -14,7 +14,7 @@ author: RunnerLee
 laravel-admin 的模板, 使用的命名空间是 `admin`, laravel-admin 是通过 `Illuminate\Support\ServiceProvider::loadViewsFrom()` 来注册模板命名空间的:
 
 *Illuminate\Support\ServiceProvider*
-```
+```php
 abstract class ServiceProvider
 {
     protected function loadViewsFrom($path, $namespace)
@@ -35,7 +35,7 @@ abstract class ServiceProvider
 再看下注册命名空间跟获取模板
 
 *Illuminate\View\Factory*
-```
+```php
 class Factory implements FactoryContract
 {
     public function make($view, $data = [], $mergeData = [])
@@ -60,7 +60,7 @@ class Factory implements FactoryContract
 
 再查看 finder
 *Illuminate\View\FileViewFinder*
-```
+```php
 <?php
 class FileViewFinder implements ViewFinderInterface
 {
