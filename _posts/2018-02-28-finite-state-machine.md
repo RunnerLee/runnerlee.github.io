@@ -9,13 +9,13 @@ author: RunnerLee
 
 > 年轻的樵夫哟，你掉的是这个金斧头，还是这个银斧头呢?
 
+Github: [runner/heshen](https://github.com/RunnerLee/heshen)
+
 状态机一直在用 [yohang/Finite](https://github.com/yohang/Finite), 好用, 但配置复杂, 并且很久没维护了. 最终还是决定写一个, 命名想了很久, 最终决定用河神来命名, 哈哈哈, 我选择金斧头.
 
 我的需求很简单, 管理每个状态转移, 并支持转移动作回调, 以及转移动作支持回调检查.
 
 ![](http://oupjptv0d.bkt.gdipper.com//heshen/fsm.png)
-
-直接来用! [runner/heshen](https://github.com/RunnerLee/heshen)
 
 先定义 Stateful 对象
 
