@@ -90,6 +90,7 @@ $machine->apply('one');
 /*
  * output:
  * before apply transition 'one'
+ * setting
  * after apply transition 'one'
  */
 
@@ -114,3 +115,4 @@ $machine = $factory->make($document);
 
 var_dump($machine->can('one')); // output: bool(true)
 ```
+
