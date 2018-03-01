@@ -15,7 +15,7 @@ author: RunnerLee
 
 ![](http://oupjptv0d.bkt.gdipper.com//heshen/fsm.png)
 
-直接来用!
+直接来用! [runner/heshen](https://github.com/RunnerLee/heshen)
 
 先定义 Stateful 对象
 
