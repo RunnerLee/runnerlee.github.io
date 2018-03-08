@@ -38,7 +38,7 @@ Parameters: {"authenticity_token"=>"{token}", "namespace_key"=>"[FILTERED]", "na
 cd /opt/gitlab
 
 # 进入 console
-bin/gitlab-rails
+bin/gitlab-rails console
 
 # 查找项目, 取消正在删除状态并保存
 p = Project.unscoped.find(14)
