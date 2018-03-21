@@ -31,7 +31,7 @@ author: RunnerLee
 
 function verify($phoneNumber)
 {
-    if (0 === preg_match('/^(13[0-9]|14[57]|15([0-3]|[5-9])|166|17[0135678]|18\d|19[89])\d{8}$/', $phoneNumber)) {
+    if (0 === preg_match('/^(13\d|15[012356789]|166|17[01235678]|18\d|19[89])\d{8}$/', $phoneNumber)) {
         return false;
     }
     if ('13800138000' === $phoneNumber || 0 < preg_match(substr($phoneNumber, 3), '/^(\d)\g{1}{7}$/')) {
