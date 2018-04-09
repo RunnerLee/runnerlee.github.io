@@ -117,5 +117,5 @@ $packageName = $composerInfo['name'];
 
 ## 结合 laravel
 
-未完待续..
+直接上 [GitHub](https://github.com/RunnerLee/laravel-satis)
 
