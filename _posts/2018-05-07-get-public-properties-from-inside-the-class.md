@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 从对象内部获取对象的所有 public 属性并以数组形式返回
+title: 从对象内部获取对象所有 public 属性
 category: 技术
 tags: php object public property
 description: 从对象内部获取对象的所有 public 属性并以数组形式返回
