@@ -1,9 +1,9 @@
 ---
 layout: post
-title: \[面试题\]从对象内部获取对象的所有 public 属性并以数组形式返回
+title: 从对象内部获取对象的所有 public 属性并以数组形式返回
 category: 技术
 tags: php object public property
-description: \[面试题\]从对象内部获取对象的所有 public 属性并以数组形式返回
+description: 从对象内部获取对象的所有 public 属性并以数组形式返回
 author: RunnerLee
 ---
 
