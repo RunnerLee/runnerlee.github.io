@@ -116,3 +116,10 @@ $responseHeaders = array_pop($responseInfo);
 ```
 
 一开始觉得这种处理方式有点猥琐但也算有效, 但下班路上才想到.. 如果 response body 里带有 `\r\n\r\n`, 那不就出事了 ?
+
+#### 参考
+- [http://www.laruence.com/2011/01/20/1840.html](http://www.laruence.com/2011/01/20/1840.html)
+- [https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/100](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/100)
+- [https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Expect](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Expect)
+- [https://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html#sec8.2.3](https://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html#sec8.2.3)
+- [http://tools.ietf.org/html/7231#section-5.1.1](http://tools.ietf.org/html/7231#section-5.1.1)
