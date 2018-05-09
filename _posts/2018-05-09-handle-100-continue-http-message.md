@@ -13,22 +13,22 @@ author: RunnerLee
 在 sendRequest 时, curl 是这么用的
 
 ```
-        $this->withOption(CURLOPT_HTTPHEADER, $headers);
-        $this->withOption(CURLOPT_URL, $url);
-        $this->withOption(CURLOPT_CUSTOMREQUEST, $this->getMethod());
-        $this->withOption(CURLINFO_HEADER_OUT, true);
-        $this->withOption(CURLOPT_HEADER, true);
-        $this->withOption(CURLOPT_RETURNTRANSFER, true);
+$this->withOption(CURLOPT_HTTPHEADER, $headers);
+$this->withOption(CURLOPT_URL, $url);
+$this->withOption(CURLOPT_CUSTOMREQUEST, $this->getMethod());
+$this->withOption(CURLINFO_HEADER_OUT, true);
+$this->withOption(CURLOPT_HEADER, true);
+$this->withOption(CURLOPT_RETURNTRANSFER, true);
 
-        foreach ($this->options as $key => $option) {
-            curl_setopt($ch, $key, $option);
-        }
+foreach ($this->options as $key => $option) {
+    curl_setopt($ch, $key, $option);
+}
 
-        $response = curl_exec($ch);
-        $errorCode = curl_errno($ch);
-        $errorMsg = curl_error($ch);
+$response = curl_exec($ch);
+$errorCode = curl_errno($ch);
+$errorMsg = curl_error($ch);
 
-        list($responseHeaders, $response) = explode("\r\n\r\n", $response, 2);
+list($responseHeaders, $response) = explode("\r\n\r\n", $response, 2);
 ```
 
 通过 `CURLOPT_HEADER` 将 response headers 同 body 一起输出. 然后根据 `\r\n\r\n` 切割. 然后看一下苹果那边的响应:
