@@ -89,7 +89,7 @@ curl_setopt($ch, CURLOTP_HTTPHEADER, ['Expect:']);
 
 Guzzle 的做法是当 `options` 中没指定的话, 就置空避免 curl 自动添加
 
-https://github.com/guzzle/guzzle/blob/master/src/Handler/CurlFactory.php?utf8=%E2%9C%93#L276
+[guzzlehttp/guzzle](https://github.com/guzzle/guzzle/blob/master/src/Handler/CurlFactory.php?utf8=%E2%9C%93#L276)
 ```
 // If the Expect header is not present, prevent curl from adding it
 if (!$request->hasHeader('Expect')) {
@@ -107,8 +107,8 @@ if (!$request->hasHeader('Expect')) {
 
 顺便吐槽一下 [@JanHuang](https://github.com/JanHuang) 之前关于这块的处理:
 
-https://github.com/fastdlabs/http/commit/4be3d6fd913f63f357dae037f52d42da2fe4c0a1
 
+[fastd/http](https://github.com/fastdlabs/http/commit/4be3d6fd913f63f357dae037f52d42da2fe4c0a1)
 ```
 $responseInfo = explode("\r\n\r\n", $response);
 $response = array_pop($responseInfo);
