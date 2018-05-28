@@ -7,7 +7,7 @@ description: 折腾下CORS
 author: RunnerLee
 ---
 
-CORS, 全程 Cross-Origin Resource Sharing, 翻译跨域资源共享. 是一种跨域调用的解决方案.
+CORS, 全称 Cross-Origin Resource Sharing, 翻译跨域资源共享. 是一种跨域调用的解决方案.
 
 > 跨域资源共享标准新增了一组 HTTP 首部字段，允许服务器声明哪些源站有权限访问哪些资源。
 
