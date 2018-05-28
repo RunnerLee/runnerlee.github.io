@@ -19,7 +19,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Method: GET,POST,PUT,PATCH,DELETE,OPTIONS
 Access-Control-Allow-Credentials: true
 ```
-(前阵子有些同事搞得挺雷声挺大的最后也就是加这三个东西, 笑 🤪)
+(前阵子几个同事搞得挺大的最后也就是加这三个东西 🤪)
 
 其中 `Access-Control-Allow-Origin` 是用于控制允许访问的域名, 设置为 `*` 明显是不行的, 并且服务端应该校验它的.
 
