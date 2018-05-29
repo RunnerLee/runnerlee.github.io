@@ -11,7 +11,7 @@ CSRF, 全称 Cross-Site Request Forgery, 跨站请求伪造, 也称 session ridi
 
 > 是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作的攻击方法. -- 维基百科
 
-!> CSRF 是一种依赖 web 浏览器的、被混淆过的代理人攻击（deputy attack
+> CSRF 是一种依赖 web 浏览器的、被混淆过的代理人攻击（deputy attack
 
 举个例子, 假如 A 站点中有用户登录功能, 登录后有个转账的功能, 是表单 POST 跳转提交到一个 url `/do_transfer`. 用户 🐷 在 A 站点登录, 然后又打开了 B 站点.
 
