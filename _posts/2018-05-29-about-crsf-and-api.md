@@ -38,3 +38,8 @@ B 站点中页面构建了一个表单, 是 POST 跳转提交到 A 站点中的 
 5. 验证码
 
 虽说无法百分百解决被恶意调用的问题, 但应该能把影响控制到最小, 没办法, 谁让你没登录呢 🤪.
+
+### 参考
+- [https://zh.wikipedia.org/zh/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0](https://zh.wikipedia.org/zh/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0)
+- [https://www.ibm.com/developerworks/cn/web/1102_niugang_csrf/index.html](https://www.ibm.com/developerworks/cn/web/1102_niugang_csrf/index.html)
+- [https://laravel.com/docs/5.6/csrf](https://laravel.com/docs/5.6/csrf)
