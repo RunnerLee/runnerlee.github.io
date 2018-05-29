@@ -54,3 +54,7 @@ gems: ['jekyll-paginate', 'jekyll-sitemap']
 
 # Exclude
 exclude: ['README.md']
+
+ga:
+  id: UA-104881530-1
+  url: runnerlee.com
