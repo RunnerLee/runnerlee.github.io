@@ -12,8 +12,8 @@ owner:
     name: RunnerLee
     email: runnerleer@gmail.com
     github: RunnerLee
-    twitter: 
-    linkedin: 
+    twitter:
+    linkedin:
     facebook:
     google_plus:
     youtube:
@@ -34,7 +34,6 @@ permalink: /:year/:month/:day/:title/
 paginate: 6
 
 # Markdown
-markdown: redcarpet
 highlighter: rouge
 
 # Enable when using redcarpet
