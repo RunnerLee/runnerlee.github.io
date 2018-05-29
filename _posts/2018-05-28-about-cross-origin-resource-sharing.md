@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 折腾下CORS
-category: 技术
-tags: http cors
-description: 折腾下CORS
-author: RunnerLee
+date: 2018-05-28
+update_date: 2018-05-28
+summary: CORS, 全称 Cross-Origin Resource Sharing, 翻译跨域资源共享. 是一种跨域调用的解决方案.
+logo: crosshairs
 ---
 
 CORS, 全称 Cross-Origin Resource Sharing, 翻译跨域资源共享. 是一种跨域调用的解决方案.
@@ -14,6 +14,7 @@ CORS, 全称 Cross-Origin Resource Sharing, 翻译跨域资源共享. 是一种�
 在没有应用 CORS 的情况下, 在浏览器中调用跨域资源, 通过抓包可以看到, 其实请求是正确响应的了, 只不过浏览器 "拒绝" 使用了. 
 
 那要浏览器使用, 其实只要在响应头里加三行:
+
 ```
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Method: GET,POST,PUT,PATCH,DELETE,OPTIONS
@@ -67,6 +68,7 @@ Access-Control-Allow-Credentials: true
 3. 判断是否是预检请求 (Preflight Request)
 
 如果是预检请求, 则处理步骤为:
+
 1. 判断是否有 Access-Control-Request-Method, 没有则拒绝
 2. 判断是否有 Access-Control-Request-Headers, 如果有, 判断内容是否合法
 3. 设置 Access-Control-Allow-Origin
@@ -77,6 +79,7 @@ Access-Control-Allow-Credentials: true
 8. 返回不带 body 的 response
 
 如果是实际请求, 则处理步骤为:
+
 1. 设置 Access-Control-Allow-Origin
 2. 设置 Access-Control-Expose-Headers, 非必须
 3. 设置 Access-Control-Allow-Credentials

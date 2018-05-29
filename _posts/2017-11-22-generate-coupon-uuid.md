@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 生成由阿拉伯数字和小写字母组成的六位数唯一号码
-category: 技术
-tags: uuid coupon
-description: 生成由阿拉伯数字和小写字母组成的六位数唯一号码
-author: RunnerLee
+date: 2017-11-22
+update_date: 2017-11-22
+summary: uuid 的愚蠢实现
+logo: slideshare
 ---
 
 有个优惠码的需求, 由于历史原因, 优惠码需要是由小写字母跟阿拉伯数字组成的六位数的码, 并且必须是唯一的.

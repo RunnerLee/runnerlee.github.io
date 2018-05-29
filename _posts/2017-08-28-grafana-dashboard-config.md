@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Grafana 面板配置
-category: 技术
-tags: DevOps
-description: Grafana 面板配置, 基于模板变量 + Influxdb 正则
-author: RunnerLee
+date: 2017-10-12
+update_date: 2017-10-12
+summary: 基于 Influxdb 数据源的监控面板
+logo: dashboard
 ---
 
 Grafana 屌炸天的模板变量, 搭配 Influxdb 对正则强大的支持, 可以做出实现资源编排又很酷炫的监控面板.

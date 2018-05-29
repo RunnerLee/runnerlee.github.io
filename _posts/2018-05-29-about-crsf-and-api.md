@@ -1,10 +1,10 @@
 ---
 layout: post
-title: CSRF 与 API
-category: 技术
-tags: http csrf api
-description: CSRF 与 API
-author: RunnerLee
+title: API 有必要防范 CSRF 吗?
+date: 2018-05-29
+update_date: 2018-05-29
+summary: CSRF, 全称 Cross-Site Request Forgery, 跨站请求伪造, 也称 session riding, 这个别称很形象.
+logo: bolt
 ---
 
 CSRF, 全称 Cross-Site Request Forgery, 跨站请求伪造, 也称 session riding, 这个别称很形象.

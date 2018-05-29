@@ -1,36 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-  {% include head.html %}
+<!-- Header: begin -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <body>
-    <nav class="nav">
-      <div class="nav-container">
-        <a href="{{ site.baseurl }}/">
-          <h2 class="nav-title">{{ site.title }}</h2>
-        </a>
-        <ul>
-          <li><a href="{{ site.baseurl }}/">Posts</a></li>
-        </ul>
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% if page.title %}
+            {{ page.title | strip_html }} &#8211;
+        {% endif %}
+        {{ site.title | strip_html }}
+    </title>
+
+    <!-- Meta information for search engines -->
+    <meta name="author" content="{{ owner.name }}">
+    <meta name="description" content="{% if page.summary %}{{ page.summary | xml_escape }}{% else %}{{ site.description | xml_escape }}{% endif %}">
+    {% if page.categories %}
+        <meta name="keywords" content="{{ page.categories | join: ', ' }}">
+    {% endif %}
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary" />
+    {% if site.owner.twitter %}
+        <meta name="twitter:creator" content="@{{ site.owner.twitter }}" />
+    {% endif %}
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+    <meta name="twitter:description" content="{% if page.summary %}{{ page.summary | strip_html }}{% elsif page.excerpt %}{{ page.excerpt  | strip_html }}{% else %}{{ site.description | strip_html }}{% endif %}" />
+    <meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+    <meta property="og:description" content="{% if page.summary %}{{ page.summary | strip_html }}{% elsif page.excerpt %}{{ page.excerpt  | strip_html }}{% else %}{{ site.description | strip_html }}{% endif %}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:site_name" content="{{ site.title | strip_html | xml_escape }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ site.url }}/css/trio.css">
+
+    <!-- Social buttons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Set the canonical URL for search engines -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.title }}" href="{{ site.url }}/feed.xml" />
+
+    <!-- Icons -->
+    <!-- The ?v=8jjamLzmpR simply forces the browser to reload the favicon. Remove after a long time. -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ site.url }}/apple-touch-icon-57x57.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ site.url }}/apple-touch-icon-60x60.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ site.url }}/apple-touch-icon-72x72.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ site.url }}/apple-touch-icon-76x76.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ site.url }}/apple-touch-icon-114x114.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ site.url }}/apple-touch-icon-120x120.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ site.url }}/apple-touch-icon-144x144.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ site.url }}/apple-touch-icon-152x152.png?v=8jjamLzmpR">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}/apple-touch-icon-180x180.png?v=8jjamLzmpR">
+    <link rel="icon" type="image/png" href="{{ site.url }}/favicon-32x32.png?v=8jjamLzmpR" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ site.url }}/favicon-194x194.png?v=8jjamLzmpR" sizes="194x194">
+    <link rel="icon" type="image/png" href="{{ site.url }}/favicon-96x96.png?v=8jjamLzmpR" sizes="96x96">
+    <link rel="icon" type="image/png" href="{{ site.url }}/android-chrome-192x192.png?v=8jjamLzmpR" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{ site.url }}/favicon-16x16.png?v=8jjamLzmpR" sizes="16x16">
+    <link rel="shortcut icon" href="{{ site.url }}/favicon.ico?v=8jjamLzmpR">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="{{ site.url }}/mstile-144x144.png?v=8jjamLzmpR">
+</head>
+<!-- Header: end -->
+
+<body>
+<div class="wrapper-for-content-outside-of-footer">
+    <div class="site-title">
+        <a href="{{ site.url }}">{{ site.title }}</a>
     </div>
-  </nav>
+    <div class = "container">
+        {{ content }}
+    </div>
+</div>
 
-    <main>
-      {{ content }}
-    </main>
 
-    <footer>
-      <span>
-        &copy; <time datetime="{{ site.time }}">{{ site.time | date: '%Y' }}</time> {{ site.author.name }}. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
-      </span>
-      <br>
-      <span>
-        <a href="https://github.com/RunnerLee">RunnerLee</a> is the most handsome man on GitHub.
-      </span>
-      <br>
-      <span>Hosted by <a href="https://pages.github.com" style="font-weight: bold" target="_blank">GitHub Pages</a>.</span>
-    </footer>
-    {% include googleanalytics.html %}
-    {% include baidu.html %}
-  </body>
+<!-- Some empty space between the page counter and footer -->
+<div>
+    <br/><br/><br/><br/>
+</div>
+
+
+<!-- Footer: begin -->
+<footer class="stickyfooter" role="contentinfo">
+  <div class="footer-logo">
+    <a href="{{ site.url }}"><i class="fa fa-{{ site.fort_awesome_icon }}"></i></a>
+  </div>
+    <ul>
+      <li><a href="{{ site.url }}/about/">About</a></li>
+      <li><a href="{{ site.url }}/search/">Search</a></li>
+    </ul>
+
+    <div class="footer-secondary-links">
+      <ul>
+        <li>Powered by <a href="http://jekyllrb.com/">Jekyll</a>
+        using the <a href="https://github.com/ankur-gupta/trio">Trio</a> theme
+        </li>
+      </ul>
+
+      <ul class="footer-social">
+        <li><a href="{{ site.url }}/feed.xml">
+                <i class="fa fa-rss-square"></i>
+        </a></li>
+        {% if site.owner.github %}
+            <li><a href="http://github.com/{{ site.owner.github }}">
+                <i class="fa fa-github-square"></i>
+            </a></li>
+        {% endif %}
+
+        {% if site.owner.twitter %}
+            <li><a href="http://twitter.com/{{ site.owner.twitter }}">
+                <i class="fa fa-twitter-square"></i>
+            </a></li>
+        {% endif %}
+
+        {% if site.owner.linkedin %}
+            <li><a href="http://linkedin.com/in/{{ site.owner.linkedin }}">
+                <i class="fa fa-linkedin-square"></i>
+            </a></li>
+        {% endif %}
+
+        {% if site.owner.google_plus %}
+            <li><a href="http://plus.google.com/+{{ site.owner.google_plus }}">
+                <i class="fa fa-google-plus-square"></i>
+            </a></li>
+        {% endif %}
+
+        {% if site.owner.facebook %}
+            <li><a href="http://facebook.com/{{ site.owner.facebook }}">
+                <i class="fa fa-facebook-square"></i>
+            </a></li>
+        {% endif %}
+
+        {% if site.owner.youtube %}
+            <li><a href="http://github.com/{{ site.owner.youtube }}">
+                <i class="fa fa-youtube-square"></i>
+            </a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <!-- This removes the small sliver of whitespace at the end of the page -->
+    <br/>
+</footer>
+<!-- Footer: end -->
+
+</body>
 </html>

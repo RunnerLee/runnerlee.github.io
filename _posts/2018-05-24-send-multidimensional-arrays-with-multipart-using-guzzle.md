@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 用 guzzle 以 multipart/form-data 提交多维数组
-category: 技术
-tags: http curl php guzzle multipart
-description: 用 guzzle 以 multipart/form-data 提交多维数组
-author: RunnerLee
+date: 2018-05-24
+update_date: 2018-05-24
+summary: guzzle 日常踩坑
+logo: bug
 ---
 
 用 guzzle 以 multipart/form-data 来提交时, 一般是这么操作的:

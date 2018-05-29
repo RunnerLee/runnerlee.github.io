@@ -1,13 +1,11 @@
 ---
 layout: post
 title: heshen 有限状态机
-category: 技术
-tags: php fsm
-description: heshen 有限状态机
-author: RunnerLee
+date: 2018-02-28
+update_date: 2018-02-28
+summary: 年轻的樵夫哟，你掉的是这个金斧头，还是这个银斧头呢?
+logo: drupal
 ---
-
-> 年轻的樵夫哟，你掉的是这个金斧头，还是这个银斧头呢?
 
 Github: [runner/heshen](https://github.com/RunnerLee/heshen)
 
@@ -42,6 +40,7 @@ class Document implements StatefulInterface
 ```
 
 然后定义一个 Blueprint 来配置 Transition 及 State
+
 ```php
 <?php
 
@@ -76,6 +75,7 @@ class Graph extends Blueprint {
 ```
 
 开始使用!
+
 ```php
 <?php
 
@@ -100,6 +100,7 @@ var_dump($machine->can('two', ['number' => 6])); // output: bool(true)
 ```
 
 通过 Factory 获取 Machine
+
 ```php
 <?php
 

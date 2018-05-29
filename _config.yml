@@ -1,35 +1,57 @@
-# Permalinks
-permalink:      /:year/:month/:day/:title
+# Site wide configuration
+title: Runner
+description: 'The most handsome man on GitHub'
+url: https://runnerlee.com
+date_format: '%B %d, %Y'
+fort_awesome_icon: 'cog fa-spin'
 
-# Setup
-title:          RunnerLee
-paginate:       10
-baseurl:        ""
-url:            "https://runnerlee.com"
+# Owner configuration
+# name and email are required (change code to remove these)
+# (leave the rest blank to disable the corresponding sharing button)
+owner:
+    name: RunnerLee
+    email: runnerleer@gmail.com
+    github: RunnerLee
+    twitter: 
+    linkedin: 
+    facebook:
+    google_plus:
+    youtube:
 
-# Assets
-sass:
-  sass_dir:     _sass
-  style:        :compressed
+# Post sharing icons
+sharing:
+    twitter: true
+    linkedin: true
+    facebook: true
+    google_plus: true
+    reddit: true
 
-# Build settings
-markdown:       kramdown
+# Disqus comments configuration (leave blank to disable comments)
+disqus_shortname: 'runnerleegithubio'
 
-# About
-author:
-  name:         RunnerLee
-  url:          https://github.com/RunnerLee
-  email:        runnerleer@gmail.com
+# Jekyll configuration
+permalink: /:year/:month/:day/:title/
+paginate: 6
 
-# Custom vars
-version:        3.4.1
-github:
-  repo:         https://github.com/RunnerLee/runnerlee.github.io
+# Markdown
+markdown: redcarpet
+highlighter: rouge
+
+# Enable when using redcarpet
+redcarpet:
+  extensions: ['smart', 'tables', 'with_toc_data', 'footnotes']
+
+# Enable when using kramdown (you will need to use ~~~ instead of ```)
+# kramdown:
+#   auto_ids: true
+#   footnote_nr: 1
+#   entity_output: as_char
+#   toc_levels: 1..6
+#   use_coderay: false
 
 # Gems
-gems:
-  - jekyll-paginate
+gems: ['jekyll-paginate']
 
-ga:
-  id: UA-104881530-1
-  url: runnerlee.com
+# Exclude
+exclude: ['README.md']
+

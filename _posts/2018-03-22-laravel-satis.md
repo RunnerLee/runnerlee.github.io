@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 用 laravel 和 satis 搭建 packagist 私有源
-category: 技术
-tags: laravel satis packagist composer
-description: 用 laravel 和 satis 搭建 packagist 私有源
-author: RunnerLee
+title: laravel 和 satis 搭建 packagist 私有源
+date: 2018-03-22
+update_date: 2018-03-22
+summary: 简单省事
+logo: briefcase
 ---
 
 公司搭建了自己的 GitLab, 但是如果要在 composer 里依赖到 GitLab 上的私有仓库, 就要把用到私有仓库的地址全部放到 `composer.json` 里, 很麻烦.
@@ -21,7 +21,7 @@ composer create-project composer/satis ./satis
 
 在 satis 目录中创建一个 `satis.json` 文件
 
-```
+```json
 {
     "name": "packagist name",
     "homepage": "http://custom.packagist.domain",
@@ -49,7 +49,7 @@ php bin/satis build satis.json ./publish
 
 项目中的 `composer.json` 文件增加配置
 
-```
+```json
 {
     "repositories": [
         {

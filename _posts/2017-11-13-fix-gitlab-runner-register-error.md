@@ -1,13 +1,14 @@
 ---
 layout: post
 title: 修复注册 gitlab-runner 时提示 network problems 及 status=404 
-category: 技术
-tags: gitlab-runner ci regsiter
-description: 修复注册 gitlab-runner 时一直提示 perhaps you are having network problems 及 status=404 
-author: RunnerLee
+date: 2017-11-13
+update_date: 2017-11-13
+summary: GitLab 跳坑系列
+logo: git
 ---
 
 GitLab 社区版 8.16.4, 在注册 runner 的时候, 一直提示这个错误
+
 ```
 ERROR: Registering runner... failed runner=<token> status=404 Not Found
 PANIC: Failed to register this runner. Perhaps you are having network problems

@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 处理带有 HTTP 100 Continue 的响应
-category: 技术
-tags: http curl php
-description: 处理带有 HTTP 100 Continue 的响应
-author: RunnerLee
+date: 2018-05-09
+update_date: 2018-05-09
+summary: Expect:100-continue
+logo: eye-slash
 ---
 
 在一个新项目里面做验证苹果内支付的支付凭证, 用了 [fastd/http](https://github.com/fastdlabs/http), 
@@ -12,7 +12,7 @@ author: RunnerLee
 
 在 sendRequest 时, curl 是这么用的
 
-```
+```php
 $this->withOption(CURLOPT_HTTPHEADER, $headers);
 $this->withOption(CURLOPT_URL, $url);
 $this->withOption(CURLOPT_CUSTOMREQUEST, $this->getMethod());
@@ -83,14 +83,16 @@ content-length: 1273
 - 刚好我测试时使用的苹果的支付凭证大于 1024 字节, 触发这个机制
 
 那么解决方案也可以参考鸟哥或者是 Guzzle 的做法, 就是指定一个空的 `Expect:` 请求头, 也就是不进行询问.
-```
+
+```php
 curl_setopt($ch, CURLOTP_HTTPHEADER, ['Expect:']);
 ```
 
 Guzzle 的做法是当 `options` 中没指定的话, 就置空避免 curl 自动添加
 
 [guzzlehttp/guzzle](https://github.com/guzzle/guzzle/blob/master/src/Handler/CurlFactory.php?utf8=%E2%9C%93#L276)
-```
+
+```php
 // If the Expect header is not present, prevent curl from adding it
 if (!$request->hasHeader('Expect')) {
     $conf[CURLOPT_HTTPHEADER][] = 'Expect:';
@@ -109,7 +111,8 @@ if (!$request->hasHeader('Expect')) {
 
 
 [fastd/http](https://github.com/fastdlabs/http/commit/4be3d6fd913f63f357dae037f52d42da2fe4c0a1)
-```
+
+```php
 $responseInfo = explode("\r\n\r\n", $response);
 $response = array_pop($responseInfo);
 $responseHeaders = array_pop($responseInfo);

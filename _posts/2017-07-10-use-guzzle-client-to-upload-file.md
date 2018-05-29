@@ -1,15 +1,16 @@
 ---
 layout: post
 title: 使用 Guzzle 上传文件
-category: 技术
-tags: PHP
-description: 使用 Guzzle 上传文件
-author: RunnerLee
+date: 2017-07-10
+update_date: 2017-07-10
+summary: guzzle 日常踩坑
+logo: bug
 ---
 
 上传文件, 只能通过 multipart/form-data 的表单上传.
 
 简单的上传文件的例子:
+
 ```php
 <?php
 
@@ -57,6 +58,7 @@ $client->request('POST', 'http://foo.com/upload_file', [
 在这里, 必须设置 `content-type`, 否则再次上传的文件, 将无法获取到 mime type.
 
 原因看这里:
+
 ```php
 #class: GuzzleHttp\Psr7\MultipartStream
 private function createElement($name, StreamInterface $stream, $filename, array $headers)
@@ -77,6 +79,7 @@ private function createElement($name, StreamInterface $stream, $filename, array 
 ```
 
 看下 `mimetype_from_filename` 这个辅助函数
+
 ```php
 function mimetype_from_filename($filename)
 {

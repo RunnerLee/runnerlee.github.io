@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Telegraf+Influxdb+Grafana 可视化监控系统搭建
-category: 技术
-tags: PHP
-description: Telegraf+Influxdb+Grafana 可视化监控系统搭建
-author: RunnerLee
+date: 2017-08-18
+update_date: 2017-08-18
+summary: 监控系统初探
+logo: user-secret
 ---
 
 ### 原有监控系统

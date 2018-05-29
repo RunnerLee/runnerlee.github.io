@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 解决 GitLab 中新建与已删除项目同名时报错
-category: 技术
-tags: GitLab
-description: 解决 GitLab 中新建与已删除项目同名时报错 the project is still being deleted
-author: RunnerLee
+date: 2017-07-20
+update_date: 2017-07-20
+summary: GitLab 跳坑系列
+logo: git
 ---
 
 我用的版本是 `社区版 8.16.4`

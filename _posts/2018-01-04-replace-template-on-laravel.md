@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 替换 laravel 第三方扩展包的模板
-category: 技术
-tags: laravel template service provider
-description: 替换 laravel 第三方扩展包的模板
-author: RunnerLee
+date: 2018-01-04
+update_date: 2018-01-04
+summary: 接着看 laravel 源码
+logo: code
 ---
 
 用 [laravel-admin](laravel-admin.org) 做了后台, 然后因为同事说想替换这个扩展包提供的模板, 他的做法是声明一个新的 class 继承后覆盖父类中使用的模板名.
@@ -14,6 +14,7 @@ author: RunnerLee
 laravel-admin 的模板, 使用的命名空间是 `admin`, laravel-admin 是通过 `Illuminate\Support\ServiceProvider::loadViewsFrom()` 来注册模板命名空间的:
 
 *Illuminate\Support\ServiceProvider*
+
 ```php
 abstract class ServiceProvider
 {
@@ -35,6 +36,7 @@ abstract class ServiceProvider
 再看下注册命名空间跟获取模板
 
 *Illuminate\View\Factory*
+
 ```php
 class Factory implements FactoryContract
 {
@@ -60,6 +62,7 @@ class Factory implements FactoryContract
 
 再查看 finder
 *Illuminate\View\FileViewFinder*
+
 ```php
 <?php
 class FileViewFinder implements ViewFinderInterface

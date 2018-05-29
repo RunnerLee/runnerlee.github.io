@@ -1,15 +1,15 @@
 ---
 layout: post
 title: 从对象内部获取对象所有 public 属性
-category: 技术
-tags: php object public property
-description: 从对象内部获取对象的所有 public 属性并以数组形式返回
-author: RunnerLee
+date: 2018-05-07
+update_date: 2018-05-07
+summary: OOP Visibility
+logo: object-group
 ---
 
 刷到这条面试题, 从对象内部获取对象的所有 public 属性并以数组形式返回, 尽量不使用反射, 并封装为 trait, 当时直接就这么做了:
 
-```
+```php
 return get_class_vars(static::class);
 ```
 
