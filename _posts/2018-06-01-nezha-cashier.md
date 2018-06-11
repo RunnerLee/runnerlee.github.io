@@ -36,6 +36,7 @@ cashier($config, $gateway)->charge($order);
 下面直接复制一下 [runner/nezha-cashier](https://github.com/RunnerLee/nezha-cashier) 的 readme
 
 ### 支持网关
+
 | 名称 | 网关 | 支持动作 | 支持回调 | 备注 |
 | :--- | :---- | :---- | :---- | :---- |
 | alipay_app | 支付宝 APP 支付 | 支付/支付查询/退款 | 支付 |  |
@@ -150,6 +151,7 @@ $form = $cashier->refund([
 ### 表单及字段说明
 
 #### ChargeRequestForm
+
 | 字段名 | 是否必须 | 字段说明 | 备注 |
 | --- | --- | --- | --- |
 | order_id | 是 | 订单号 |  |
