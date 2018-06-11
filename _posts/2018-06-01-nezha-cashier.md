@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 说说自己做的第三方支付 sdk - 哪吒收银员
+title: 又一个第三方支付 sdk - 哪吒收银员
 date: 2018-06-01
 update_date: 2018-06-01
-summary: nezha-cashier
+summary: runner/nezha-cashier
 logo: dollar
 ---
 
