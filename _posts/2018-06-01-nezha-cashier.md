@@ -7,6 +7,8 @@ summary: runner/nezha-cashier
 logo: dollar
 ---
 
+先贴一下 GitHub repo: [https://github.com/RunnerLee/nezha-cashier](https://github.com/RunnerLee/nezha-cashier).
+
 因为一直在做支付, 接入支付跟微信这些, 官方提供的 SDK 基本毫无人性. 而众多的非官方的 SDK 也感觉不尽人意, 所以决定自己来写一个.
 
 其实之前也用过别人的 SDK, 在我都了解第三方的接口和参数的情况下, 用别人开发的 SDK, 哪怕是上千个 star 的 SDK, 都跟官方的 SDK 一样,
