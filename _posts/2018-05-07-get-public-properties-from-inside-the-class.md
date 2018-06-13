@@ -2,7 +2,7 @@
 layout: post
 title: 从对象内部获取对象所有 public 属性
 date: 2018-05-07
-update_date: 2018-05-07
+update_date: 2018-06-13
 summary: OOP Visibility
 logo: object-group
 ---
@@ -43,6 +43,8 @@ trait Tool
 ```
 
 2. 通过 Closure::bind() 创建匿名函数并绑定对象和作用域到一个匿名类.
+
+> bind() 不支持绑定到匿名类或是 PHP 内置类 (例如 \stdClass)
 
 ```php
 <?php
