@@ -2,7 +2,7 @@
 layout: post
 title: 时刻加油
 date: 2018-06-19
-update_date: 2018-06-19
+update_date: 2018-06-22
 summary: 不止是为了生活
 logo: child
 ---
@@ -14,4 +14,6 @@ logo: child
 附上老妈做的端午节包子.
 
 ![](/assets/img/WechatIMG639.jpeg)
+
+唉...
 
