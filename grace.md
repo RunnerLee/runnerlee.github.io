@@ -7,7 +7,7 @@ permalink: /grace/
 ```php
 <?php
 
-$sweetLife = new SweetLift(
+$sweetLife = new SweetLife(
     $runnerlee = new Male('runnerlee'),
     $grace = new Female('grace')
 );
