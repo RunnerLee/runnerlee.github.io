@@ -2,7 +2,7 @@
 layout: post
 title: 正则验证中国手机号码
 date: 2017-10-12
-update_date: 2017-10-12
+update_date: 2018-08-25
 summary: 只能做到校验号码段
 logo: phone
 ---
@@ -30,7 +30,7 @@ function verify($phoneNumber)
     if (0 === preg_match('/^(13\d|15[012356789]|166|17[01235678]|18\d|19[89])\d{8}$/', $phoneNumber)) {
         return false;
     }
-    if ('13800138000' === $phoneNumber || 0 < preg_match(substr($phoneNumber, 3), '/^(\d)\g{1}{7}$/')) {
+    if ('13800138000' === $phoneNumber || 0 < preg_match('/^(\d)\g{1}{7}$/', substr($phoneNumber, 3))) {
         return false;
     }
     return true;
