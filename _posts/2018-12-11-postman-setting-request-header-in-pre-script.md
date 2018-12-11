@@ -43,7 +43,7 @@ pm.variables.set('request_signature', signature);
         "accept": "*/*",
         "accept-encoding": "gzip, deflate",
         "cache-control": "no-cache",
-        "cookie": "sails.sid=s%3AsA5sZQ3cvKWT6maoZWEGbUxXW6NRH2jc.sli3Mnnjge742wjjJJ7ba%2FAG9TRuo8S9pWfJUbipWkU",
+        "cookie": "sails.sid=s%3AsA5sZQ3cvKWT6maoZWEGbUxXW6NRH2jc",
         "postman-token": "e1be48b0-7653-45d6-b4a7-7476f4d88b9b",
         "user-agent": "PostmanRuntime/7.4.0",
         "x-app-id": "1",
