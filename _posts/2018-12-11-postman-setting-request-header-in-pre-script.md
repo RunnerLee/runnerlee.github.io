@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 在 Postman 中利用 Pre-Script 设置请求头
+title: Postman 用 Pre-Script 设置请求头
 date: 2018-12-11
 update_date: 2018-12-11
 summary: Postman 技巧
