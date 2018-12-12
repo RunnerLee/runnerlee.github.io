@@ -55,7 +55,3 @@ pm.variables.set('request_signature', signature);
 }
 
 ```
-
-
-
-
