@@ -18,7 +18,7 @@ EOF
 if [ "$1" == 'edit' ]
 then
     `code ${basepath}`
-elif [ "$1" == commit ]
+elif [ "$1" == 'commit' ]
 then
     `cd ${basepath}`
     `git add .`
