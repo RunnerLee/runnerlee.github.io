@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Laravel Mysql IN 语句与 PDO 绑定值
+title: Laravel MySQL IN 语句与 PDO 绑定值
 date: 2018-12-13
 update_date: 2018-12-13
 summary: SQL 记录与 Laravel 源码阅读
