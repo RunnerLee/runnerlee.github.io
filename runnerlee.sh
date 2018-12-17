@@ -17,13 +17,13 @@ EOF
 
 if [ "$1" == 'edit' ]
 then
-    `code ${basepath}`
+    code ${basepath}
 elif [ "$1" == 'commit' ]
 then
-    `cd ${basepath}`
-    `git add .`
-    `git commit -m "update"`
-    `git push origin master`
+    cd ${basepath}
+    git add .
+    git commit -m 'update'
+    git push origin master
 else
     printHelp
 fi
