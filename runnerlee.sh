@@ -1,6 +1,6 @@
 #!/bin/bash
 
-workpath='/Users/runner/Code/Blog'
+basepath=$(cd `dirname $0`; pwd)
 
 printHelp() {
     cat <<EOF
@@ -17,10 +17,10 @@ EOF
 
 if [ "$1" == 'edit' ]
 then
-    code ${workpath}
+    code ${basepath}
 elif [ "$1" == 'commit' ]
 then
-    cd ${workpath}
+    cd ${basepath}
     git add .
     git commit -m 'update'
     git push origin master
