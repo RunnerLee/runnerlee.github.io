@@ -12,7 +12,7 @@ logo: check
 
 直接看一下 `exists` 的验证规则的具体实现:
 
-```
+```php
 namespace Illuminate\Validation\Concerns
 
 trait ValidatesAttributes
@@ -39,7 +39,7 @@ trait ValidatesAttributes
 
 那要实现 `not_exists` 就简单啦:
 
-```
+```php
 Validator::extend('not_exists', function ($attributes, $value, $parameters, $validator) {
     return !$validator->validateExists($attributes, $value, $parameters);
 });
