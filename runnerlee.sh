@@ -12,6 +12,8 @@ Usage:
 Commands:
   edit      open blog dictionary by vs code
   commit    commit change to remote repostiory
+  new       create an new post
+  serve     start jekyll serve
 EOF
 }
 

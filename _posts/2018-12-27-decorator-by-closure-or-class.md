@@ -4,7 +4,7 @@ title: 装饰器闭包实现与类实现
 date: 2018-12-27
 update_date: 2018-12-27
 summary: design pattern
-logo: link
+logo: hand-paper-o
 ---
 
 装饰器模式也叫修饰模式, 用于动态地给一个对象增加额外的职责. 复制以下维基百科的说明:
