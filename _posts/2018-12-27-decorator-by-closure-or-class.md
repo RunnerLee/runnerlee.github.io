@@ -7,6 +7,8 @@ summary: design pattern
 logo: hand-paper-o
 ---
 
+## 概念定义
+
 装饰器模式也叫修饰模式, 用于动态地给一个对象增加额外的职责. 复制以下维基百科的说明:
 
 ```
@@ -20,6 +22,8 @@ logo: hand-paper-o
 - 具体装饰 ConcreteDecorator
 
 ![Decorator](/assets/img/design-pattern/decorator/1.png)
+
+## 实现
 
 从 UML 图中可以看出, ConcreteComponent 和 Decorator 都实现了 Component. 下面简单实现一个装饰器
 
@@ -37,14 +41,6 @@ abstract class Decorator implements Component
     {
         $this->component = $component;
     }
-
-    public function handle()
-    {
-        $this->operate();
-        return $this->component->handle();
-    }
-
-    abstract public function operate();
 }
 
 class ConcreteComponent implements Component
@@ -58,16 +54,18 @@ class ConcreteComponent implements Component
 $component = new ConcreteComponent;
 
 $concreteDecoratorA = new class($component) extends Decorator {
-    public function operate()
+    public function handle()
     {
         echo 'A' . PHP_EOL;
+        return $this->component->handle();
     }
 };
 
 $concreteDecoratorB = new class($concreteDecoratorA) extends Decorator {
-    public function operate()
+    public function handle()
     {
         echo 'B' . PHP_EOL;
+        return $this->component->handle();
     }
 };
 
@@ -82,24 +80,20 @@ A
 Component
 ```
 
-可以看出, 应用装饰器模式后, `Decorator` 可以为 `ConcreteComponent` 增加新的行为, 而不需要通过继承的方式, 从而避免众多由于子类增多导致的问题. 而 `Decorator` 的职责单一, 不需要改动 `ConcreteComponent`, 并且方便拆卸.
+可以看出, 应用装饰器模式后, 装饰器可以为构件增加新的行为, 而不需要通过继承的方式, 从而避免众多由于子类增多导致的问题. 而装饰器的职责单一, 不需要改动构件即可实现功能扩展, 并且方便拆卸.
 
-下面用装饰器来实现做煎饼的过程
+## 应用示例
+
+下面用来实现做煎饼的过程, 将煎饼最终步骤定位 "煎饼出锅", 前面的步骤包括加火腿加鸡蛋等都是可自由组装的.
+
+目前把煎饼的步骤定为: 刷油 -> 下面液 -> 下蛋 -> 加生菜 -> 加火腿 -> 煎饼出锅. 煎饼出锅为最后一步(也就是具体构件), 而前面的每个步骤都为装饰器.
+
 ```php
 class ConcreteComponent implements Component
 {
     public function handle()
     {
         echo '煎饼出锅' . PHP_EOL;
-    }
-}
-abstract class Decorator implements Component
-{
-    protected $component;
-
-    public function __construct(Component $component)
-    {
-        $this->component = $component;
     }
 }
 $component = new ConcreteComponent;
@@ -155,8 +149,9 @@ $e->handle();
 
 这样, 你就可以方便地加培根, 加番茄酱, 加各种肉各种酱...
 
-而手动关联这一步也可以稍加修改用闭包来实现, 主要使用了 `array_reduce()` 来产生一个 callback 来实现 `Decorator` 对 `Component` 的调用.
-并返回 `Decorator` 作为 `Component`.
+## 自动关联
+
+而手动关联这一步也可以稍加修改用闭包来实现, 可以使用了 `array_reduce()` 来实现使用自动把具体构件及各个具体装饰关联, 并得到最后的具体装饰.
 
 ```php
 abstract class Decorator implements Component
@@ -190,6 +185,8 @@ $callback = array_reduce(
 print_r($callback->handle());
 ```
 
+## 闭包实现
+
 那么再来一个更加彻底的闭包实现:
 
 ```php
@@ -214,12 +211,14 @@ $callback = array_reduce(
 
     function ($carry, $item) {
 
+        // concreteComponent
         return function () use ($carry, $item) {
             return $item($carry);
         };
 
     },
 
+    // concreteComponent
     function () {
         echo 'hello world' . PHP_EOL;
     }
