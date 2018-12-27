@@ -15,6 +15,21 @@ Commands:
 EOF
 }
 
+template() {
+    cat <<EOF
+---
+layout: post
+title: $2
+date: $1
+update_date: $1
+summary: 
+logo: 
+---
+
+
+EOF
+}
+
 if [ "$1" == 'edit' ]
 then
     code ${workpath}
@@ -24,6 +39,15 @@ then
     git add .
     git commit -m 'update'
     git push origin master
+elif [ "$1" == 'new' ]
+then
+    now=`date +%Y-%m-%d`
+    filename=${workpath}"/_posts/"${now}-$2".md"
+    template ${now} $3 > ${filename}
+elif [ "$1" == 'serve' ]
+then
+    cd ${workpath}
+    jekyll serve
 else
     printHelp
 fi
