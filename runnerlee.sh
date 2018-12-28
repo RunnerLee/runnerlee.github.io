@@ -41,6 +41,7 @@ then
     git add .
     git commit -m 'update'
     git push origin master
+    git push coding master
 elif [ "$1" == 'new' ]
 then
     now=`date +%Y-%m-%d`
