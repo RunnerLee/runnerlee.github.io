@@ -31,7 +31,7 @@ disqus_shortname: 'runnerleegithubio'
 
 # Jekyll configuration
 permalink: /:year/:month/:day/:title/
-paginate: 6
+paginate: 10
 
 # Markdown
 markdown: kramdown
