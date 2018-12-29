@@ -2,7 +2,7 @@
 layout: post
 title: 午后一条判断括号闭合的小题目
 date: 2018-11-23
-update_date: 2018-11-23
+update_date: 2018-12-29
 summary: 睡不着
 logo: coffee
 ---
@@ -21,19 +21,20 @@ function check($str)
     $n = 0;
     for ($i = 0; $i < strlen($str); ++$i) {
 
-        $n += $str[$i] === '(' ? 1 : ($str[$i] === ')' ? -1 : 0);
+        // 实际上不能用三元运算符, 我错了 ~
+        // $n += $str[$i] === '(' ? 1 : ($str[$i] === ')' ? -1 : 0);
 
-        // switch ($str[$i]) {
-        //     case '(':
-        //         ++$n;
-        //         break;
-        //     case ')':
-        //         --$n;
-        //         if ($n < 0) {
-        //             return false;
-        //         }
-        //         break;
-        // }
+        switch ($str[$i]) {
+            case '(':
+                ++$n;
+                break;
+            case ')':
+                --$n;
+                if ($n < 0) {
+                    return false;
+                }
+                break;
+        }
     }
 
     return 0 === $n;
