@@ -69,7 +69,7 @@ class RouteDispatcher extends Dispatcher
 ```
 
 大概的 UML 图
-![routing](/assets/img/2019-01-04/1.png)
+![routing](/assets/img/2019-01-04/2.png)
 
 当然 UML 中的 `Router` 是 Laravel 中的叫法, FastD 中叫的是 `Dispatcher`. 
 
