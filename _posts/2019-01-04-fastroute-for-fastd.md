@@ -69,14 +69,14 @@ class RouteDispatcher extends Dispatcher
 ```
 
 大概的 UML 图
-![routing](/assets/img/2019-01-04/2.png)
+![routing](/assets/img/2019-01-04/1.png)
 
 当然 UML 中的 `Router` 是 Laravel 中的叫法, FastD 中叫的是 `Dispatcher`. 
 
 那么用 FastRoute 来替换的话, 由于 FastRoute 的 `Dispatcher` 需要将路由配置解析成数组再传入构造方法, 因此需要把 `Router` 拆分出一个 `RouteDispatcher`.
 
 看一下 UML 图
-![routing](/assets/img/2019-01-04/1.png)
+![routing](/assets/img/2019-01-04/2.png)
 
 然后是实现
 
