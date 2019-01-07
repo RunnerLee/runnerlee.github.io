@@ -29,6 +29,6 @@ location: http://runnerlee.com/page2/
 curl: (7) Failed to connect to runnerlee.com port 80: Connection refused
 ```
 
-之后以外开启了全局代理, 发现... 能返回 301 重定向到 `https://runnerlee.com/page2/` .
+之后意外开启了全局代理, 发现... 能返回 301 重定向到 `https://runnerlee.com/page2/` .
 
 😔 那只好先把博客部署到 Coding Pages 上了.
