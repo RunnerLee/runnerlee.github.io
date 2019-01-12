@@ -51,6 +51,9 @@ elif [ "$1" == 'serve' ]
 then
     cd ${workpath}
     jekyll serve
+elif [ "$1" == 'folder' ]
+then
+    open ${workpath}
 else
     printHelp
 fi
