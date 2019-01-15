@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 安卓不喜欢API里的null
+title: 安卓不喜欢 API 里的 null
 date: 2019-01-15
 update_date: 2019-01-15
 summary: API 联调
