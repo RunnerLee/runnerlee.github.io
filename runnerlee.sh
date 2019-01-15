@@ -46,7 +46,9 @@ elif [ "$1" == 'new' ]
 then
     now=`date +%Y-%m-%d`
     filename=${workpath}"/_posts/"${now}-$2".md"
+    touch ${filename}
     template ${now} $3 > ${filename}
+    code ${workpath}
 elif [ "$1" == 'serve' ]
 then
     cd ${workpath}
