@@ -14,6 +14,7 @@ Commands:
   commit    commit change to remote repostiory
   new       create an new post
   serve     start jekyll serve
+  folder    open the blog folder
 EOF
 }
 
