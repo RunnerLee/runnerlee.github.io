@@ -1,6 +1,11 @@
 #!/bin/bash
 
-workpath='/Users/runner/Code/Blog'
+if [ -L $0 ]
+then
+    workpath=$(dirname `readlink $0`)
+else
+    workpath=$(cd `dirname $0`; pwd)
+fi
 
 printHelp() {
     cat <<EOF
@@ -14,7 +19,7 @@ Commands:
   commit    commit change to remote repostiory
   new       create an new post
   serve     start jekyll serve
-  folder    open the blog folder
+  finder    open the blog folder in finder
 EOF
 }
 
@@ -54,7 +59,7 @@ elif [ "$1" == 'serve' ]
 then
     cd ${workpath}
     jekyll serve
-elif [ "$1" == 'folder' ]
+elif [ "$1" == 'finder' ]
 then
     open ${workpath}
 else
