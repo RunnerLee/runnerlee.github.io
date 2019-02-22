@@ -29,15 +29,13 @@ array:2 [
 ]
 ```
 
-可以看到 `dump()` 能获取到下标 `a` 被引用的状态. 那么是怎么实现的呢 ?
+可以看到 `dump()` 能获取到下标 `a` 被引用的状态. 是怎么实现的呢 ?
 
-还没看源码之前, 搜了下 php 函数, 除了 `debug_zval_dump()` 貌似没其他函数可以获取到状态. 但搜到这个:
-
-[StackOverflow - Detecting whether a PHP variable is a reference/referenced](https://stackoverflow.com/questions/4817562/detecting-whether-a-php-variable-is-a-reference-referenced)
-
-里面有人提供了一种办法:
+还没看源码之前, 搜了下 php 函数, 除了 `debug_zval_dump()` 貌似没其他函数可以获取到状态. 但在 StackOverflow 里搜到一个这样的办法:
 
 ```php
+// @see: https://stackoverflow.com/questions/4817562/detecting-whether-a-php-variable-is-a-reference-referenced
+
 function EqualReferences(&$first, &$second){
     if($first !== $second){
         return false;

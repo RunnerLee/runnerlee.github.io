@@ -171,6 +171,10 @@ pre > code {
   background-color: $white;
 }
 
+pre > code > a {
+  text-decoration: none;
+}
+
 .container {
   max-width: 35rem;
   margin: 0 auto;
