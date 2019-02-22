@@ -131,8 +131,32 @@ for ($i = 0; $i < $len; ++$i) {
 
 同时也记录下接下来要去了解的内容: 强引用 (hard reference) 和 弱引用 (weak reference).
 
+下班前记录一下更新:
+
+```php
+$alpha = [
+    'e' => 4,
+    'f' => 5,
+];
+$a = & $alpha['e'];
+$beta = (function ($arr) {
+    $b = & $arr['f'];
+    return $arr;
+})($alpha);
+
+print_r(get_ref_index($beta));
+```
+
+在这里打印出来的, 只有是 `e` 下标才有被引用. 因为 c 只学到了一点皮毛, 先简单这么理解:
+
+php 在复制数组时, `如果具有引用的数组被拷贝，其值不会解除引用。对于数组传值给函数也是如此。` . 因为 `$b = & $arr['f']` 是在匿名函数内, 因此在 return 之后
+`$b` 已经被销毁了, 所以 `$beta['f']` zval 的`refcount` 则变成了 0. 因此不存在引用.
+
+
 #### 参考
 - [StackOverflow - Detecting whether a PHP variable is a reference/referenced](https://stackoverflow.com/questions/4817562/detecting-whether-a-php-variable-is-a-reference-referenced)]
 - [对象比较](http://php.net/manual/zh/language.oop5.object-comparison.php)
 - [引用做什么](http://php.net/manual/zh/language.references.whatdo.php)
 - [symfony/var-dumper](https://github.com/symfony/var-dumper)
+- [TIPI: 变量的赋值和销毁](http://www.php-internals.com/book/?p=chapt03/03-06-01-var-define-and-init)
+- [PHP 引用计数基本知识](http://php.net/manual/zh/features.gc.refcounting-basics.php)
