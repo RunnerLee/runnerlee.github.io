@@ -14,9 +14,7 @@ $arr = [
     'a' => '1',
     'b' => 2,
 ];
-
 $a = & $arr['a'];
-
 dump($arr);
 ```
 
@@ -72,18 +70,15 @@ var_dump($b); // unmodified
 function get_ref_index($arr)
 {
     $copy = $arr;
-
     $return = [];
-
     foreach ($copy as $key => $value) {
-        $copy[$key] = uniqid(mt_rand());    // 简单地生成随机数, 以避免出现刚好值相等的情况
-
+        // 生成随机数替换以避免出现刚好值相等的情况
+        $copy[$key] = uniqid(mt_rand());
         if ($arr[$key] === $copy[$key]) {
             $return[] = $key;
         }
         $copy[$key] = $value;
     }
-
     return $return;
 }
 
@@ -91,11 +86,9 @@ $arr = [
     'a' => '1',
     'b' => '2',
 ];
-
 $a = & $arr['a'];
 
 print_r(get_ref_index($arr));
-
 ```
 
 然后看一下 `symfony/var-dumper` 是怎么做的:
