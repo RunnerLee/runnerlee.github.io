@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PHP计算乌拉姆数列
+title: PHP 计算乌拉姆数列
 date: 2019-03-10
 update_date: 2019-03-10
 summary: 瞎学一点数学
