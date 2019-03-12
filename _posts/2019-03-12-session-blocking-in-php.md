@@ -1,6 +1,6 @@
 ---
 layout: post
-title: php 的 session blocking
+title: PHP 的 session blocking
 date: 2019-03-12
 update_date: 2019-03-12
 summary: 好久没搞这个了
