@@ -14,7 +14,7 @@ logo: hand-rock-o
 | 1 | session_start() | - |
 | 2 | sleep(10) | - |
 | 3 |  | session_start() |
-| 4 | exit | ... |
+| 4 | end | ... |
 | 5 |  | end |
 
 当第二个请求调用 `session_start()` 时发生了阻塞. 因为看不懂 php 源码, 直接看下文件的使用情况:
