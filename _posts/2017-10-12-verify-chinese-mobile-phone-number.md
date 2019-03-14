@@ -22,12 +22,15 @@ logo: phone
 - 中国电信获得 199 作为公众移动通信网网号段
 - 中国联通获得 166 作为公众移动通信网网号段
 
+#### 2019-03-14 更新
+中国移动有在卖 147 的号码段...
+
 ```php
 <?php
 
 function verify($phoneNumber)
 {
-    if (0 === preg_match('/^(13\d|15[012356789]|166|17[01235678]|18\d|19[89])\d{8}$/', $phoneNumber)) {
+    if (0 === preg_match('/^(13\d|147|15[012356789]|166|17[01235678]|18\d|19[89])\d{8}$/', $phoneNumber)) {
         return false;
     }
     if ('13800138000' === $phoneNumber || 0 < preg_match('/^(\d)\g{1}{7}$/', substr($phoneNumber, 3))) {
