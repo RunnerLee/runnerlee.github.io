@@ -52,7 +52,7 @@ W：for a write lock on the entire file;
 那么要避免阻塞, 有两种解决办法: 打开 session 文件不上写锁, 或是手动 `session_commit()` / `session_write_close()`.
 
 两种各有优劣:
-- 不上写锁, 会导致覆盖, session 内容丢失
+- 不上写锁, 会导致覆盖
 - 手动 commit, 则要求应用中操作 session 需要统一行为, 如果应用已经上线则需要修改较多
 
 然而目前我能想到的正常的业务流程和业务场景里, 不上写锁带来的问题貌似都不影响, 问题不大. 

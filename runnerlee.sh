@@ -62,6 +62,9 @@ then
 elif [ "$1" == 'finder' ]
 then
     open ${workpath}
+elif [ "$1" == 'path' ]
+then
+    echo $workpath
 else
     printHelp
 fi
