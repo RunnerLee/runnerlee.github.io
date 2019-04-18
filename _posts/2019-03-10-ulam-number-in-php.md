@@ -53,11 +53,9 @@ package main
 
 import "fmt"
 
-var numbers map[int]int
-
 func ulam(a int, b int, max int) []int {
 	sequence := []int{a, b}
-	numbers = map[int]int{
+	numbers := map[int]int{
 		a: 1,
 		b: 1,
 	}
