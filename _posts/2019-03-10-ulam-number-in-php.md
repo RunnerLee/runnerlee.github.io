@@ -56,13 +56,11 @@ import "fmt"
 var numbers map[int]int
 
 func ulam(a int, b int, max int) []int {
-
 	sequence := []int{a, b}
 	numbers = map[int]int{
 		a: 1,
 		b: 1,
 	}
-
 	counter := 0
 	for i := int(3); i < max; i++ {
 		counter = 0
@@ -75,16 +73,13 @@ func ulam(a int, b int, max int) []int {
 						break
 					}
 				}
-
 			}
 		}
-
 		if 2 == counter {
 			sequence = append(sequence, i)
 			numbers[i] = 1
 		}
 	}
-
 	return sequence
 }
 
