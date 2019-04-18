@@ -1,8 +1,8 @@
 ---
 layout: post
-title: PHP 计算乌拉姆数列
+title: 计算乌拉姆数列
 date: 2019-03-10
-update_date: 2019-03-10
+update_date: 2019-04-18
 summary: 瞎学一点数学
 logo: sort-numeric-asc
 ---
@@ -44,4 +44,51 @@ for ($i = 3; $i < $max; ++$i) {
 print_r($numbers);
 ```
 
+Update:
 
+同样的思路, 用 Go 实现一次:
+
+```go
+package main
+
+import "fmt"
+
+var numbers map[int]int
+
+func ulam(a int, b int, max int) []int {
+
+	sequence := []int{a, b}
+	numbers = map[int]int{
+		a: 1,
+		b: 1,
+	}
+
+	counter := 0
+	for i := int(3); i < max; i++ {
+		counter = 0
+		for m := range sequence {
+			left := i - sequence[m]
+			if left != sequence[m] {
+				if _, ok := numbers[left]; ok {
+					counter++
+					if counter > 2 {
+						break
+					}
+				}
+
+			}
+		}
+
+		if 2 == counter {
+			sequence = append(sequence, i)
+			numbers[i] = 1
+		}
+	}
+
+	return sequence
+}
+
+func main() {
+	fmt.Println(ulam(1, 2, 100))
+}
+```
