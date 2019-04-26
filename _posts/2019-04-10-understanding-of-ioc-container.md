@@ -2,7 +2,7 @@
 layout: post
 title: IoC 容器理解
 date: 2019-04-10
-update_date: 2019-04-10
+update_date: 2019-04-26
 summary: IoC Container
 logo: inbox
 ---
@@ -28,32 +28,23 @@ logo: inbox
 下面用简单的伪代码来看有无使用控制反转的区别:
 
 ```php
-class Alpha
-{
-}
-
 class Beta
 {
     protected $alpha;
-
     // Before
     public function __construct()
     {
         $this->alpha = new Alpha();
     }
-
     // 依赖注入
     public function __construct(Alpha $alpha)
     {
         $this->alpha = $alpha;
     }
-
-    // 依赖查找
-    public function __construct()
-    {
-        $this->alpha = factory::get('alpha');
-    }
 }
+
+// 依赖查找并注入依赖
+new Beta(Factory::get('alpha'));
 ```
 
 > 由于是示例所以 `Alpha` 相对简单. 但当 `Alpha` 是一个 db connection 时, 就需要获取 connection config 并传入, 如果需要在每个地方都这么操作那将是非常麻烦的.
@@ -64,189 +55,42 @@ class Beta
 
 #### 容器
 
-容器提供依赖实例的方式除了依靠框架的自动加载以外, 容器自身还维护了一个 map 来保存一些类的别名, 从而实现通过某个类的类名或是他的别名来从容器中获取实例 (应用场景之一就是绑定接口到某个实现). 甚至是可以根据对象的不同, 为同个别名绑定不同的实现, 从而实现根据上下文绑定实现.
+容器总是在创建外部所需要的 service, 就像上面的查找依赖的例子一样, 外部通过一个 key 来向容器索取所需要的实例.
 
-容器还可以保存对于一些可以共享复用的对象, 从而避免重复实例化, 也可以看做是间接实现了单例.
+容器除了依靠框架提供的自动加载来创建所需实例依赖, 还维护了一个 map 来关联绑定 key 跟实现. 所以这里的 key 更像是一个别名, 他可以有多种形式, 从而可以实现各种类型的绑定:
+* 普通的绑定, 用类名绑定自己
+* 语义化别名的绑定, 例如用 `cache` 绑定到 `FileCache::class` 的实现上
+* 接口绑定实现, 例如用 `CacheInterface::class` 绑定到 `FileCache::class` 上
+* 递归地绑定别名, 例如将 `db` 绑定到 `MySQLConnection::class` 的实现上, 将 `mysql` 绑定到 `db` 上
 
-下面用 php 来实现一个简单的 IoC 容器.
+
+在实际实现中, 一些 service 例如 DBConnection 应当避免重复实例化, 亦或是实例可以复用时, 除了依赖 service 自身实现的单例以外, 容器也应当实现避免重复创建 (通过容器间接实现单例), 因此需要将一些指定的 service 实例保存起来.
+
+同时, 也可能会遇到一些无法或不建议通过容器创建的实例, 但同样需要避免重复实例化或可用于复用时, 容器应当支持直接将实例注册到容器中.
+
+容器在创建 service 实例时, service 的构造方法可能存在需要注入的依赖, 可以通过反射来获取参数的类型约束, 并使用类型约束从容器获取对应的实例 (递归).
+所以在有些容器的实现中, 加入了 "上下文绑定" (contextual binding) 的特性. 既绑定某个类需要注入的依赖所能获取到的具体实现.
+
+简单地定义一个容器的接口:
 
 ```php
-use Closure;
-use ReflectionClass;
-use ReflectionParameter;
-use RuntimeException;
-use ReflectionException;
-use Exception;
 
-class Container
+interface ContainerInterface
 {
-    /**
-     * @var array
-     */
-    protected $bindings = [];
+    public function bind($name, $contrete);
 
-    /**
-     * @param string $name
-     * @param string|null $concrete
-     */
-    public function bind($name, $concrete = null)
-    {
-        if (is_null($concrete)) {
-            $concrete = $name;
-        }
+    public function make($name);
 
-        $this->bindings[$name] = $concrete;
-    }
-
-    /**
-     * @param string $name
-     * @return object
-     * @throws ReflectionException
-     */
-    public function build($name)
-    {
-        $concrete = $this->getConcrete($name);
-
-        if ($concrete instanceof Closure) {
-            return $concrete($this);
-        }
-
-        $reflector = new ReflectionClass($concrete);
-
-        if (!$reflector->isInstantiable()) {
-            throw new RuntimeException(sprintf('%s is not instantiable', $name));
-        }
-
-        $constructor = $reflector->getConstructor();
-
-        if (!$constructor || !$constructor->getParameters()) {
-            return $reflector->newInstance();
-        }
-
-        return $reflector->newInstanceArgs($this->getDependencies($constructor->getParameters()));
-    }
-
-    /**
-     * @param ReflectionParameter[] $reflectionParameters
-     * @return array
-     * @throws
-     */
-    protected function getDependencies(array $reflectionParameters)
-    {
-        $result = [];
-        foreach ($reflectionParameters as $parameter) {
-            if (!is_null($parameter->getClass())) {
-                try {
-                    $result[] = $this->build($parameter->getClass()->getName());
-                } catch (Exception $exception) {
-                    if (!$parameter->isOptional()) {
-                        throw $exception;
-                    }
-                    $result[] = $parameter->getDefaultValue();
-                }
-            } else {
-                if (!$parameter->isDefaultValueAvailable()) {
-                    throw new RuntimeException(
-                        sprintf(
-                            'parameter %s has no default value',
-                            $parameter->getName()
-                        )
-                    );
-                }
-                $result[] = $parameter->getDefaultValue();
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * @param $name
-     * @return string|Closure
-     */
-    protected function getConcrete($name)
-    {
-        $concrete = $name;
-
-        while (true) {
-            if (!isset($this->bindings[$concrete]) || $concrete === $this->bindings[$concrete]) {
-                return $concrete;
-            }
-            if (($concrete = $this->bindings[$concrete]) instanceof Closure) {
-                return $concrete;
-            }
-        }
-    }
+    public function instance($name, $instance);
 }
 ```
 
-然后来试着调用一下:
+我把实现提交到了 GitHub: [https://github.com/RunnerLee/container](https://github.com/RunnerLee/container)
 
-```php
-class Runner
-{
-    protected $stack;
+#### 参考
 
-    public function __construct(SplStack $stack)
-    {
-        $this->stack = $stack;
-    }
-}
+- [Laravel Container](https://laravel.com/docs/5.8/container)
+- [Pimple](https://pimple.symfony.com/)
+- [依赖注入与Ioc容器](https://blog.csdn.net/dream_successor/article/details/79078905)
+- [\[Wikipedia\] inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control)
 
-interface DemoInterface
-{}
-
-class Demo implements DemoInterface
-{}
-
-class Alpha
-{
-    protected $demo;
-
-    public function __construct(DemoInterface $demo)
-    {
-        $this->demo = $demo;
-    }
-}
-
-class RunnerSecond
-{
-    public function __construct()
-    {
-//        throw new RuntimeException('hello world');
-    }
-}
-
-class Holy
-{
-    protected $runner;
-    public function __construct(RunnerSecond $runner = null)
-    {
-        $this->runner = $runner;
-    }
-}
-
-$container = new Container();
-
-$container->bind('holy', SplStack::class);
-
-$container->bind('emmmmmmm', function (Container $container) {
-    return $container->build(SplQueue::class);
-});
-
-$container->bind(DemoInterface::class, Demo::class);
-
-$a = $container->build(Runner::class);
-
-$b = new Runner($container->build('holy'));
-
-print_r($a);
-
-print_r($b);
-
-print_r($container->build('emmmmmmm'));
-
-print_r($container->build(Alpha::class));
-
-print_r($container->build(Holy::class));
-```
