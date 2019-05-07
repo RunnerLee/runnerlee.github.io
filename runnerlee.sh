@@ -54,7 +54,7 @@ then
     filename=${workpath}"/_posts/"${now}-$2".md"
     touch ${filename}
     template ${now} $3 > ${filename}
-    code ${workpath}
+    code ${workpath} ${filename}
 elif [ "$1" == 'serve' ]
 then
     cd ${workpath}
