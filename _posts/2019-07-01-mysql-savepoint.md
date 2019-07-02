@@ -7,9 +7,9 @@ summary: 所谓的嵌套事务
 logo: database
 ---
 
-之前搞 Yii 或者 TP 的项目, 要避免嵌套事务, 总是需要把事务开启的传递通过参数传递. 最近在写 laravel 的项目, 一不小心又写了嵌套的事务.
+之前搞 Yii 或者 TP 的项目, 要避免嵌套事务, 总是需要把事务开启的状态通过参数传递. 最近在写 laravel 的项目, 一不小心又写了嵌套的事务.
 
-但没想到 laravel 的处理挺有意思. 用到了 savepoint. 摘抄一下维基百科关于 savepoint 的介绍:
+但 laravel 的处理挺有意思. 用到了 savepoint. 摘抄一下维基百科关于 savepoint 的介绍:
 
 ```
 savepoint是在数据库事务处理中实现“子事务”（subtransaction），也称为嵌套事务的方法。
@@ -164,7 +164,7 @@ trait ManagesTransactions
 {
     public function beginTransaction()
     {
-        // 这里是先开启事务/创建 savepoint, 再递增 `$transactions`
+        // 这里是先开启事务/创建 savepoint, 再递增 $transactions
         $this->createTransaction();
         $this->transactions++;
         $this->fireConnectionEvent('beganTransaction');
@@ -233,3 +233,6 @@ protected function performRollBack($toLevel)
 
 laravel 真是屌屌的~
 
+#### 参考
+- [Wikipedia - savepoint](https://zh.wikipedia.org/wiki/Savepoint)
+- [MySQL - savepoint](https://dev.mysql.com/doc/refman/5.7/en/savepoint.html)
