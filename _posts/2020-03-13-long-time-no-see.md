@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 才想起来的我的博客
+title: 才想起来我的博客
 date: 2020-03-13
 update_date: 2020-03-13
 summary: 快半年没写博客了
