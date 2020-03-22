@@ -96,7 +96,8 @@ $builder->query()
     ->term('category_id', 1)
     ->prefix('goods_name', 'abc')
     ->bool(function (QueryBuilder $query) {
-        $query->shouldTerm('create_uid', 'runnerlee')->shouldTerm('update_uid', 'runnerlee');
+        $query->shouldTerm('create_uid', 'runnerlee')
+            ->shouldTerm('update_uid', 'runnerlee');
     });
 ```
 
